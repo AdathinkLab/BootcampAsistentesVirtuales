@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 //Para que El servidor reciba request de  tipo JSON
 app.use(bodyParser.json());
 
+//POST http://localhost:3400/webhook
 app.post("/webhook",function(req,res){
   let data= req.body;
 

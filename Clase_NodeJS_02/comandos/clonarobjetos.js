@@ -21,7 +21,9 @@ let nombre = "Andy";
 /// Apliquemos eso en un objeto
 // let mi_usuario = usuario;//referencia
 // mi_usuario.numero1 = 9999;
-
+// mi_usuario.numero2 = 11111;
+// // usuario.numero1 = 9999;
+// // usuario.numero2 = 11111;
 // console.log(mi_usuario);
 // console.log(usuario);
 
@@ -49,8 +51,14 @@ let nombre = "Andy";
 
 /// CLONANDO 
 
-// let mi_usuario = {...usuario};
-// let mi_usuario = Object.assign({},usuario);
+ let mi_usuario = {...usuario};
+// let mi_usuario = Object.assign({},usuario,{key:"valores"});
+  mi_usuario.numero1=11111111111111;
+  console.log(usuario);
+  console.log(mi_usuario)
+
+
+
 // sumar_5(usuario);
 // console.log(mi_usuario);
 // console.log(usuario);

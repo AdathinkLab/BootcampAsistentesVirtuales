@@ -14,7 +14,7 @@ setInterval(function(){
     console.log("Lanzando Webhook !")
   let dato ={
       id: Math.round(Math.random()*10),
-      mensaje:"Hola , este es un mensaje"
+      mensaje:"Hola , este es un mensaje desde facebook"
   }
   request({
       method:"POST",

@@ -18,13 +18,13 @@ let colores= [{"nombre":"Verde"},{"nombre":"Rojo"},{"nombre":"Azul"}];
 // console.log(peru,alemania)
 
 
-let [peru , , alemania ] = paises ;
-console.log(peru,alemania)
+// let [peru , , ...uru ] = paises ;
+// console.log(peru,uru)
 
 
-// Objetos extrae variables referenciales
-let {nombre,edad} = usuario;
-console.log(nombre,edad);
+// // Objetos extrae variables referenciales
+// let {nombre:name,edad} = usuario;
+// console.log(name,edad);
 
 
 // nombre = "Andy Javier Reyes";
