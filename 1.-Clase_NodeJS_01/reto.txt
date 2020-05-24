@@ -1,0 +1,8 @@
+https://pokeapi.co/
+
+Utilizando callbacks o promesas
+Reto :
+Programama que te permita introducir un nombre o número de pokemon por la consola y mostrar información del pokemon (tipo y poderes).
+
+
+Fecha de entrega : 2020-04-23

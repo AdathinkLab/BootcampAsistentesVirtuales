@@ -1,0 +1,683 @@
+{
+  "intents": [
+    {
+      "intent": "conversacion.agradecimiento",
+      "examples": [
+        {
+          "text": "gracias"
+        },
+        {
+          "text": "genial"
+        },
+        {
+          "text": "esta bien gracias"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "excelente"
+        },
+        {
+          "text": "muchas gracias"
+        },
+        {
+          "text": "gracais"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "conversacion.pedirtipodeplato",
+      "examples": [
+        {
+          "text": "quiero un plato"
+        },
+        {
+          "text": "quiero este plato"
+        },
+        {
+          "text": "escojo el plato"
+        },
+        {
+          "text": "yo deseo este plato"
+        },
+        {
+          "text": "quiero"
+        },
+        {
+          "text": "quiero comer"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "conversacion.saludo",
+      "examples": [
+        {
+          "text": "hola"
+        },
+        {
+          "text": "olas"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "que tal causa"
+        },
+        {
+          "text": "que fue bateria"
+        },
+        {
+          "text": "que tal"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "conversacion.info",
+      "examples": [
+        {
+          "text": "informacion"
+        },
+        {
+          "text": "deseo informacion del negocio"
+        },
+        {
+          "text": "info del negocio"
+        },
+        {
+          "text": "informacion de la empresa"
+        },
+        {
+          "text": "info de la entidad"
+        },
+        {
+          "text": "info"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "conversacion.bebidas",
+      "examples": [
+        {
+          "text": "quiero la bebida"
+        },
+        {
+          "text": "por supuesto que si"
+        },
+        {
+          "text": "si deseo"
+        },
+        {
+          "text": "no losiento"
+        },
+        {
+          "text": "no gracias"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "comida",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "criollo",
+          "synonyms": [
+            "ceviche",
+            "arroz con pollo",
+            "lomo saltado",
+            "cebiche",
+            "patasca",
+            "pipían",
+            "empanadas",
+            "picarones",
+            "humitas"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "pizza",
+          "synonyms": [
+            "americana",
+            "peperoni",
+            "hawaina"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "afirmacion",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "si",
+          "synonyms": [
+            "claro",
+            "por supuesto",
+            "si",
+            "por supuesto que si"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "no gracias",
+            "ahi nomas",
+            "ando aguja",
+            "no nada causa",
+            "solo eso bateria"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "bebida",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "coca cola",
+          "synonyms": [
+            "gaseosa negra",
+            "bebida negra",
+            "la que no es peruana",
+            "jarabe"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "inca cola",
+          "synonyms": [
+            "esa gaseosa de color amarillo",
+            "la gaseosa peruana",
+            "gaseosa peruana",
+            "una gaseosa peruana"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "MAs info",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "te envio el info ..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Bienvenido",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_5_1590252111693"
+      },
+      "conditions": "#conversacion.info",
+      "dialog_node": "node_8_1590252209673",
+      "previous_sibling": "node_1_1590249080249"
+    },
+    {
+      "type": "standard",
+      "title": "Elegir Comida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Genial usted ah eligido el tipo de plato @comida"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "ahora brindame el tipo de plato que desea ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Bienvenido",
+      "conditions": "@comida",
+      "dialog_node": "node_1_1590249080249"
+    },
+    {
+      "type": "standard",
+      "title": "Ms info",
+      "parent": "node_5_1590252111693",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@afirmacion",
+      "dialog_node": "node_10_1590252810494"
+    },
+    {
+      "type": "frame",
+      "title": "ELegir el plato de comida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "que delicios plato , usted a escogido @comida.literal"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "adicionalmente deseas una bebida ? :) "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1590249080249",
+      "context": {
+        "tipo": "$comida",
+        "plato": "@comida.literal"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1590250020715"
+      },
+      "conditions": "#conversacion.pedirtipodeplato || @comida",
+      "dialog_node": "node_2_1590249356723"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1590249356723",
+      "variable": "$comida",
+      "dialog_node": "slot_3_1590249398319"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "oh dale "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1590252810494",
+      "conditions": "@afirmacion:no",
+      "dialog_node": "response_6_1590252846838",
+      "previous_sibling": "response_7_1590252833201"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Doy los mejores descuentos"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1590252810494",
+      "conditions": "@afirmacion:si",
+      "dialog_node": "response_7_1590252833201"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "no entendi lo que pedias , vuelve a escribir ?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1590249398319",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1590249398329",
+      "previous_sibling": "handler_8_1590249398329"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1590249398319",
+      "context": {
+        "comida": "@comida"
+      },
+      "conditions": "@comida",
+      "event_name": "input",
+      "dialog_node": "handler_8_1590249398329"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Esta bien no hay problema :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1590250020715",
+      "context": {
+        "gaseosa": "No Desea"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1590251235784"
+      },
+      "conditions": "@afirmacion:no",
+      "dialog_node": "response_5_1590250630445",
+      "previous_sibling": "node_1_1590250928486"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "oh genial entonces tu deseas @bebida"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1590250020715",
+      "context": {
+        "gaseosa": "@bebida"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1590251235784"
+      },
+      "conditions": "@bebida",
+      "dialog_node": "response_3_1590250712489",
+      "previous_sibling": "response_5_1590250630445"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "que gaseosa desea usted"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1590250020715",
+      "conditions": "@afirmacion:si",
+      "dialog_node": "response_6_1590250883588",
+      "previous_sibling": "response_3_1590250712489"
+    },
+    {
+      "type": "standard",
+      "title": " Escoger la bebida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Genial as escogido @bebida"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1590250020715",
+      "context": {
+        "gaseosa": "@bebida"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1590251235784"
+      },
+      "conditions": "@bebida",
+      "dialog_node": "node_1_1590250928486"
+    },
+    {
+      "type": "standard",
+      "title": "Pedir Bebida Opcional",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#conversacion.bebidas || @bebida || @afirmacion",
+      "dialog_node": "node_1_1590250020715",
+      "previous_sibling": "Bienvenido"
+    },
+    {
+      "type": "standard",
+      "title": "Completar pedido",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Tu pedido es : \nTipo de Plato : $tipo \nPlato : $plato \nGaseosa : $gaseosa \nBuen provecho tu pedido esta en camino"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "false",
+      "dialog_node": "node_6_1590251235784",
+      "previous_sibling": "node_5_1590252111693"
+    },
+    {
+      "type": "standard",
+      "title": "En otras cosas",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No le he entendido. Intente reformular la consulta."
+              },
+              {
+                "text": "¿Puede expresarse con otras palabras? No le he entendido."
+              },
+              {
+                "text": "No entendí el significado."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "En otras cosas",
+      "previous_sibling": "node_1_1590251860820",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Agradecimiento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "De nada , estoy las 24 horas para atenderte"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "source": "https://cityboxapp.com/wp-content/uploads/2019/05/friendly-chatbot-700x408.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "#conversacion.agradecimiento",
+      "dialog_node": "node_1_1590251860820",
+      "previous_sibling": "node_6_1590251235784"
+    },
+    {
+      "type": "standard",
+      "title": "Informacion del negocio",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "La empresa tiene mas de 20 años trabajando"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "somos una empresa seria"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 2000,
+            "typing": true,
+            "response_type": "pause"
+          },
+          {
+            "values": [
+              {
+                "text": "deseas alguna informacion mas ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Escoge ",
+            "options": [
+              {
+                "label": "Si Claro",
+                "value": {
+                  "input": {
+                    "text": "si"
+                  }
+                }
+              },
+              {
+                "label": "No Gracias",
+                "value": {
+                  "input": {
+                    "text": "no"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#conversacion.info",
+      "dialog_node": "node_5_1590252111693",
+      "previous_sibling": "node_1_1590250020715"
+    },
+    {
+      "type": "standard",
+      "title": "Bienvenido",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hola soy el bot delivery  . ¿Cómo puedo ayudarle? , tenemos estas opciones : \n1.- Criollo \n2.  Pizza \n3 . info del negocio"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "puedes elegir las que tu desees ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "source": "https://i.blogs.es/9eeb27/developer-3461405_1920/450_1000.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "conditions": "welcome || #conversacion.saludo",
+      "dialog_node": "Bienvenido"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Querías decir:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Ninguna de las anteriores"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Querías decir:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Delivery Comida",
+  "language": "es",
+  "description": "Bot para recopilar informacion de un pedido"
+}
